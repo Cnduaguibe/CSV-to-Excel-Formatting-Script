@@ -6,8 +6,11 @@ import string
 import xlsxwriter
 
 
-#This file path should be where the raw CAN data output file is stored. Replace accordingly
+# This file path should be where the raw CAN data output file is stored. Replace accordingly
 csv_path = r"C:\Users\cnduaguibe\Downloads\ACLTOP550CTS PT Trial 1.csv"
+
+# File path where the IPCID and IPCCOMMAND reference sheet is stored, replace accordingly
+ref_path = r"C:\Users\cnduaguibe\Desktop\CAN Command IPCID Reference Sheet.xlsx"
 
 # Create an Excel Workbook and add a worksheet
 workbook = xlsxwriter.Workbook("Data Reformatted from CSV File")
@@ -116,6 +119,7 @@ porting_function(7, 3, RTR)
 porting_function(7, 4, DLC)
 porting_function(7, 5, Payload)
 
+
 # Takes ID string from CSV file, slices it, converts hexadecimal to decimal, then a bitshift right returns the IPCID#
 def id_to_ipcid_converter(id):
     global ipcid
@@ -133,8 +137,6 @@ def id_to_ipcid_converter(id):
 id_to_ipcid_converter(ID)
 porting_function(7, 11, ipcid)
 
-# File path where the IPCID and IPCCOMMAND reference sheet is stored, replace accordingly
-ref_path = r"C:\Users\cnduaguibe\Desktop\CAN Command IPCID Reference Sheet.xlsx"
 
 # Creates a dictionary with values read from two columns in an Excel sheet
 def excel_dict_function(file_path, sheet_name, column_header1, column_header2):
