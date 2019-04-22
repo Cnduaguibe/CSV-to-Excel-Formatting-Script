@@ -47,6 +47,7 @@ with open(csv_path) as opened_file:
             else:
                 continue
 
+
 # Converts RTR and DLC values from strings to integers, then reassigns the RTR and DLC variables to the integers
 RTR_int = list()
 for value in RTR:
@@ -132,16 +133,8 @@ def id_to_ipcid_converter(id):
 id_to_ipcid_converter(ID)
 porting_function(7, 11, ipcid)
 
-
-# Change to a network location accessible by all Systems Engineering, add comment to explain that the file path is
-# dependent on network connectivity and permissions, so if someone tried to use it and couldn't access the network
-# location they would know what to do. Run script offline and see what an inability to connect to the network error
-# would look like, also run script with a file path I don't have access to in order to see what error is given. Then
-# write in comments for both scenarios above the file path to detail the issue and give advice on how to solve.
-# Something like "print("connect to the network to access this file") and print("You do not have permissions to access
-# this file") respectively. Might already be the error given but we'll see.
-ref_path = r"C:\Users\cnduaguibe\Documents\Python Script Building Reference Format.xlsx"
-
+# File path where the IPCID and IPCCOMMAND reference sheet is stored, replace accordingly
+ref_path = r"C:\Users\cnduaguibe\Desktop\CAN Command IPCID Reference Sheet.xlsx"
 
 # Creates a dictionary with values read from two columns in an Excel sheet
 def excel_dict_function(file_path, sheet_name, column_header1, column_header2):
@@ -170,6 +163,7 @@ def ipcid_to_ipccommand_function(a_list, dictionary):
 ref_dict = excel_dict_function(ref_path, 'Ref', 'IPCID', 'IPCCOMMAND')
 ipcid_to_ipccommand_function(ipcid, ref_dict)
 porting_function(7, 12, ipccommand)
+
 
 # Formatting the Excel sheet: Making column headers bold
 bold_font = workbook.add_format({'bold': True})
